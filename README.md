@@ -6,6 +6,9 @@
 <img src="https://github.com/badoualy/morphy-toolbar/blob/master/ART/gif3.gif" width="300">
 <img src="https://github.com/badoualy/morphy-toolbar/blob/master/ART/gif5.gif" width="300">
 
+### Ever wanted a beautiful transition when switching fragments? 
+Morphy Toolbar is your answer :)
+
 ## Overview
 
 > Why did I create this library? I often read questions on stack overflow on how to reproduce an animation like this one, more or less always resulting in the use of the design support library **CollapsibleToolbar**. However, I find this library to be quite buggy, and it aims to be used for scrolling events.<br/>
@@ -15,6 +18,7 @@
 - No need to handle transitions or whatever youself
 - Perfect to animate a small changes **statically** without scrolling events
 - Several customisations already possible, more to come
+- Smooth animation for transitions (for example when switching fragments)
 
 Sample
 ----------------
