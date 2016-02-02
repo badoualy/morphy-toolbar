@@ -2,8 +2,8 @@
 
 <img src="https://github.com/badoualy/morphy-toolbar/blob/master/ART/gif1.gif" width="300">
 <img src="https://github.com/badoualy/morphy-toolbar/blob/master/ART/gif2.gif" width="300">
-<img src="https://github.com/badoualy/morphy-toolbar/blob/master/ART/gif3.gif" width="300">
 <img src="https://github.com/badoualy/morphy-toolbar/blob/master/ART/gif4.gif" width="300">
+<img src="https://github.com/badoualy/morphy-toolbar/blob/master/ART/gif3.gif" width="300">
 <img src="https://github.com/badoualy/morphy-toolbar/blob/master/ART/gif5.gif" width="300">
 
 ## Overview
