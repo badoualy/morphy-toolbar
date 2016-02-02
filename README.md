@@ -19,7 +19,7 @@
 Sample
 ----------------
 
-You can checkout the [Sample Application](https://play.google.com/store/apps/details?id=com.github.badoualy.morphytoolbar.sample)
+You can checkout the [Sample Application](https://play.google.com/store/apps/details?id=com.github.badoualy.morphytoolbar.sample) on the Play Store
 
 Setup
 ----------------
