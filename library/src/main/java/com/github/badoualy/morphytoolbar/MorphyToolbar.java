@@ -1,6 +1,8 @@
 package com.github.badoualy.morphytoolbar;
 
 import android.annotation.SuppressLint;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -107,7 +109,7 @@ public class MorphyToolbar extends RelativeLayout {
         Animation a = animateToolbar(toolbar.getMeasuredHeight(), builder.toolbarExpandedHeight, toolbarColor, statusBarColor);
         Animation b = animateInnerLayout(builder.innerLayoutExpandedMargins);
         Animation c = animatePicture(builder.hidePictureWhenCollapsed ? 0 : builder.pictureCollapsedSize,
-                                                 builder.pictureExpandedSize);
+                                     builder.pictureExpandedSize);
 
         a.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -138,10 +140,10 @@ public class MorphyToolbar extends RelativeLayout {
 
     public void collapse(final OnMorphyToolbarCollapsedListener listener) {
         Animation a = animateToolbar(toolbar.getHeight(), builder.toolbarCollapsedHeight, builder.toolbarColor,
-                                                 builder.statusBarColor);
+                                     builder.statusBarColor);
         Animation b = animateInnerLayout(builder.innerLayoutCollapsedMargins);
         Animation c = animatePicture(builder.pictureExpandedSize,
-                                                 builder.hidePictureWhenCollapsed ? 0 : builder.pictureCollapsedSize);
+                                     builder.hidePictureWhenCollapsed ? 0 : builder.pictureCollapsedSize);
 
         a.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -180,6 +182,37 @@ public class MorphyToolbar extends RelativeLayout {
     public void setSubtitle(CharSequence subtitle) {
         builder.subtitle = subtitle;
         lblSubtitle.setText(subtitle);
+    }
+
+    public void setPicture(Bitmap bitmap) {
+        builder.pictureRes = -1;
+        builder.pictureBitmap = bitmap;
+        builder.pictureDrawable = null;
+        imgPicture.setImageBitmap(bitmap);
+    }
+
+    public void setPicture(Drawable drawable) {
+        builder.pictureRes = -1;
+        builder.pictureBitmap = null;
+        builder.pictureDrawable = drawable;
+        imgPicture.setImageDrawable(drawable);
+    }
+
+    public void setHidePictureWhenCollapsed(boolean value) {
+        if (value && collapsed && !builder.hidePictureWhenCollapsed) {
+            final ViewGroup.LayoutParams layoutParams = imgPicture.getLayoutParams();
+            layoutParams.height = 0;
+            layoutParams.width = 0;
+            imgPicture.requestLayout();
+            imgPicture.setVisibility(GONE);
+        } else if (!value && collapsed && builder.hidePictureWhenCollapsed) {
+            final ViewGroup.LayoutParams layoutParams = imgPicture.getLayoutParams();
+            layoutParams.height = builder.pictureCollapsedSize;
+            layoutParams.width = builder.pictureCollapsedSize;
+            imgPicture.requestLayout();
+            imgPicture.setVisibility(VISIBLE);
+        }
+        builder.hidePictureWhenCollapsed = value;
     }
 
     public boolean isCollapsed() {
