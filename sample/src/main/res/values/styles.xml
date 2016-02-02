@@ -1,0 +1,27 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="windowActionBarOverlay">true</item>
+
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>>
+    </style>
+
+    <style name="AppTheme" parent="AppTheme.Base">
+    </style>
+
+    <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">true</item>
+        <item name="color">@android:color/white</item>
+    </style>
+
+    <style name="ToolbarStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+    </style>
+
+</resources>
