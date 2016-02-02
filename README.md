@@ -1,5 +1,7 @@
 [![Release](https://jitpack.io/v/badoualy/morphy-toolbar.svg)](https://jitpack.io/#badoualy/morphy-toolbar)
 
+# ![](https://github.com/badoualy/morphy-toolbar/blob/master/sample/src/main/res/mipmap-mdpi/ic_launcher.png) Morphy Toolbar
+
 <img src="https://github.com/badoualy/morphy-toolbar/blob/master/ART/gif1.gif" width="300">
 <img src="https://github.com/badoualy/morphy-toolbar/blob/master/ART/gif2.gif" width="300">
 <img src="https://github.com/badoualy/morphy-toolbar/blob/master/ART/gif4.gif" width="300">
