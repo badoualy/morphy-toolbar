@@ -19,7 +19,7 @@
 Sample
 ----------------
 
-- TODO: add apk on play store
+You can checkout the [Sample Application](https://play.google.com/store/apps/details?id=com.github.badoualy.morphytoolbar.sample)
 
 Setup
 ----------------

@@ -10,8 +10,6 @@ import android.view.animation.Transformation;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-import com.github.badoualy.morphytoolbar.nineoldandroid.ArgbEvaluator;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
 final class MorphyToolbarUtils {
@@ -19,7 +17,6 @@ final class MorphyToolbarUtils {
     private static MorphyToolbar morphyToolbar;
     private static MorphyToolbarBuilder builder;
     private static Toolbar toolbar;
-    private static ArgbEvaluator argbEvaluator = new ArgbEvaluator();
 
     private static int toolbarCurrentColor;
     private static int statusBarCurrentColor;
@@ -57,13 +54,13 @@ final class MorphyToolbarUtils {
                 toolbar.requestLayout();
 
                 if (toolbarColor != toolbarStartColor) {
-                    toolbarCurrentColor = (Integer) argbEvaluator.evaluate(interpolatedTime, toolbarStartColor, toolbarColor);
+                    toolbarCurrentColor = (Integer) ArgbEvaluator.evaluate(interpolatedTime, toolbarStartColor, toolbarColor);
                     toolbar.setBackgroundColor(toolbarCurrentColor);
                 }
 
                 if (statusBarColor != statusBarStartColor) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        statusBarCurrentColor = (Integer) argbEvaluator.evaluate(interpolatedTime, statusBarStartColor, statusBarColor);
+                        statusBarCurrentColor = (Integer) ArgbEvaluator.evaluate(interpolatedTime, statusBarStartColor, statusBarColor);
                         builder.activity.getWindow().setStatusBarColor(statusBarCurrentColor);
                     }
                 }

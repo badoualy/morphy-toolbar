@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Toolbar -->
     <dimen name="mt_toolbar_height">56dp</dimen>
     <dimen name="mt_toolbar_picture_size_collapsed">42dp</dimen>
     <dimen name="mt_toolbar_picture_size_expanded">62dp</dimen>

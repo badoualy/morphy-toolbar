@@ -11,8 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.github.badoualy.morphytoolbar.nineoldandroid.ArgbEvaluator;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static com.github.badoualy.morphytoolbar.MorphyToolbarUtils.animateInnerLayout;
@@ -22,7 +20,6 @@ import static com.github.badoualy.morphytoolbar.MorphyToolbarUtils.animateToolba
 @SuppressLint("ViewConstructor")
 public class MorphyToolbar extends RelativeLayout {
 
-    private final ArgbEvaluator argbEvaluator = new ArgbEvaluator();
     private Builder builder;
     private AppCompatActivity activity;
     private Toolbar toolbar;
@@ -49,7 +46,7 @@ public class MorphyToolbar extends RelativeLayout {
     }
 
     private void inflate() {
-        final View view = inflate(getContext(), R.layout.morphy_toolbar, this);
+        final View view = inflate(getContext(), R.layout.mt_morphy_toolbar, this);
         innerLayout = (LinearLayout) view.findViewById(R.id.mt_layout_toolbar);
         lblTitle = (TextView) view.findViewById(R.id.lbl_title);
         lblSubtitle = (TextView) view.findViewById(R.id.lbl_subtitle);

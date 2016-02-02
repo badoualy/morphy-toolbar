@@ -1,11 +1,17 @@
-package com.github.badoualy.morphytoolbar.nineoldandroid;
+package com.github.badoualy.morphytoolbar;
 
 
 /**
  * This evaluator can be used to perform type interpolation between integer
  * values that represent ARGB colors.
+ * Pulled from nineoldandroid at
+ * https://github.com/JakeWharton/NineOldAndroids/blob/master/library/src/com/nineoldandroids/animation/ArgbEvaluator.java
  */
-public class ArgbEvaluator implements TypeEvaluator {
+final class ArgbEvaluator {
+
+    private ArgbEvaluator() {
+
+    }
 
     /**
      * This function returns the calculated in-between value for a color
@@ -23,7 +29,7 @@ public class ArgbEvaluator implements TypeEvaluator {
      * color channels and interpolating each one separately, recombining the
      * resulting values in the same way.
      */
-    public Object evaluate(float fraction, Object startValue, Object endValue) {
+    public static Object evaluate(float fraction, Object startValue, Object endValue) {
         int startInt = (Integer) startValue;
         int startA = (startInt >> 24);
         int startR = (startInt >> 16) & 0xff;
