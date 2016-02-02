@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 
+def compileLocal = false
+
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion as Integer
     buildToolsVersion rootProject.ext.buildToolsVersion as String
@@ -24,5 +26,8 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile "com.android.support:support-v4:${rootProject.ext.supportLibVersion}"
     compile "com.android.support:design:${rootProject.ext.supportLibVersion}"
-    compile project(':library')
+    if (compileLocal)
+        compile project(':library')
+    else
+        compile 'com.github.badoualy:morphy-toolbar:1.0.0'
 }

@@ -51,6 +51,7 @@ public class MorphyToolbar extends RelativeLayout {
         lblTitle = (TextView) view.findViewById(R.id.lbl_title);
         lblSubtitle = (TextView) view.findViewById(R.id.lbl_subtitle);
         imgPicture = (CircleImageView) view.findViewById(R.id.img_picture);
+        setId(R.id.mt_morphy_toolbar);
     }
 
     /** Replace the toolbar in the activity view by the MorphyToolbar, wrapping the toolbar */
