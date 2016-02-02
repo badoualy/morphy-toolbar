@@ -1,10 +1,15 @@
 [![Release](https://jitpack.io/v/badoualy/morphy-toolbar.svg)](https://jitpack.io/#badoualy/morphy-toolbar)
 
+# ![](https://github.com/badoualy/morphy-toolbar/blob/master/sample/src/main/res/mipmap-mdpi/ic_launcher.png) Morphy Toolbar
+
 <img src="https://github.com/badoualy/morphy-toolbar/blob/master/ART/gif1.gif" width="300">
 <img src="https://github.com/badoualy/morphy-toolbar/blob/master/ART/gif2.gif" width="300">
 <img src="https://github.com/badoualy/morphy-toolbar/blob/master/ART/gif4.gif" width="300">
 <img src="https://github.com/badoualy/morphy-toolbar/blob/master/ART/gif3.gif" width="300">
 <img src="https://github.com/badoualy/morphy-toolbar/blob/master/ART/gif5.gif" width="300">
+
+### Ever wanted a beautiful transition when switching fragments? 
+Morphy Toolbar is your answer :)
 
 ## Overview
 
@@ -15,6 +20,7 @@
 - No need to handle transitions or whatever youself
 - Perfect to animate a small changes **statically** without scrolling events
 - Several customisations already possible, more to come
+- Smooth animation for transitions (for example when switching fragments)
 
 Sample
 ----------------
@@ -61,6 +67,7 @@ I'll gladly accept any merge request to enhance this library
 
 Licence
 ----------------
+```
 The MIT License (MIT)
 
 Copyright (c) 2015 Yannick Badoual
@@ -82,3 +89,4 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+```
