@@ -50,12 +50,13 @@ Usage
 ``` java
 // Attach to the given activity/toolbar
 MorphyToolbar morphyToolbar = MorphyToolbar.builder(this, toolbar)
-	.withToolbarAsSupportActionBar()
-   	.withTitle("Minions [not so] serious talk")
+        .withToolbarAsSupportActionBar()
+        .withTitle("Minions [not so] serious talk")
         .withSubtitle("160 participants")
         .withPicture(R.drawable.img_profile)
         .withHidePictureWhenCollapsed(false)
         .build();
+        
 morphyToolbar.expand();
 morphyToolbar.collapse();
 ```
