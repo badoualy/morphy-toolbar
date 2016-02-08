@@ -3,7 +3,9 @@ package com.github.badoualy.morphytoolbar;
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -15,23 +17,22 @@ import android.widget.TextView;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-import static com.github.badoualy.morphytoolbar.MorphyToolbarUtils.animateInnerLayout;
-import static com.github.badoualy.morphytoolbar.MorphyToolbarUtils.animatePicture;
-import static com.github.badoualy.morphytoolbar.MorphyToolbarUtils.animateToolbar;
-
 @SuppressLint("ViewConstructor")
 public class MorphyToolbar extends RelativeLayout {
 
     private Builder builder;
     private AppCompatActivity activity;
     private Toolbar toolbar;
+    private MorphyToolbarUtils utils;
 
     private LinearLayout innerLayout;
+    private LinearLayout titleLayout;
     private TextView lblTitle;
     private TextView lblSubtitle;
     private CircleImageView imgPicture;
 
     // State fields
+    private boolean animating = false;
     private boolean collapsed = true;
 
     private MorphyToolbar(Builder builder) {
@@ -44,15 +45,18 @@ public class MorphyToolbar extends RelativeLayout {
         replaceToolbar();
         init();
 
-        MorphyToolbarUtils.init(this);
+        utils = new MorphyToolbarUtils(this);
     }
 
     private void inflate() {
         final View view = inflate(getContext(), R.layout.mt_morphy_toolbar, this);
         innerLayout = (LinearLayout) view.findViewById(R.id.mt_layout_toolbar);
-        lblTitle = (TextView) view.findViewById(R.id.lbl_title);
-        lblSubtitle = (TextView) view.findViewById(R.id.lbl_subtitle);
-        imgPicture = (CircleImageView) view.findViewById(R.id.img_picture);
+        imgPicture = (CircleImageView) innerLayout.findViewById(R.id.mt_img_picture);
+        titleLayout = (LinearLayout) innerLayout.findViewById(R.id.mt_layout_title);
+
+        lblTitle = (TextView) titleLayout.findViewById(R.id.mt_lbl_title);
+        lblSubtitle = (TextView) titleLayout.findViewById(R.id.mt_lbl_subtitle);
+
         setId(R.id.mt_morphy_toolbar);
     }
 
@@ -71,6 +75,11 @@ public class MorphyToolbar extends RelativeLayout {
     }
 
     private void init() {
+        final LayoutParams layoutParams = (LayoutParams) innerLayout.getLayoutParams();
+        layoutParams.leftMargin = builder.innerLayoutCollapsedMargins[0];
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
+            layoutParams.setMarginStart(builder.innerLayoutCollapsedMargins[0]);
+
         // The title will be displayed in our own TextView :)
         toolbar.setTitle(null);
         toolbar.setSubtitle(null);
@@ -105,20 +114,27 @@ public class MorphyToolbar extends RelativeLayout {
         expand(builder.toolbarColor, builder.statusBarColor, listener);
     }
 
+    public void expand(final int toolbarColor, final int statusBarColor) {
+        expand(toolbarColor, statusBarColor, null);
+    }
+
     public void expand(final int toolbarColor, final int statusBarColor, final OnMorphyToolbarExpandedListener listener) {
-        Animation a = animateToolbar(toolbar.getMeasuredHeight(), builder.toolbarExpandedHeight, toolbarColor, statusBarColor);
-        Animation b = animateInnerLayout(builder.innerLayoutExpandedMargins);
-        Animation c = animatePicture(builder.hidePictureWhenCollapsed ? 0 : builder.pictureCollapsedSize,
-                                     builder.pictureExpandedSize);
+        if (animating)
+            return;
+        animating = true;
+        Animation a = utils.animateToolbar(toolbar.getMeasuredHeight(), builder.toolbarExpandedHeight, toolbarColor, statusBarColor);
+        Animation b = utils.animateInnerLayout(builder.innerLayoutExpandedMargins);
+        Animation c = utils.animatePicture(builder.hidePictureWhenCollapsed ? 0 : builder.pictureCollapsedSize,
+                                           builder.pictureExpandedSize);
 
         a.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
-
             }
 
             @Override
             public void onAnimationEnd(Animation animation) {
+                animating = false;
                 collapsed = false;
                 if (listener != null)
                     listener.onMorphyToolbarExpanded();
@@ -139,11 +155,14 @@ public class MorphyToolbar extends RelativeLayout {
     }
 
     public void collapse(final OnMorphyToolbarCollapsedListener listener) {
-        Animation a = animateToolbar(toolbar.getHeight(), builder.toolbarCollapsedHeight, builder.toolbarColor,
-                                     builder.statusBarColor);
-        Animation b = animateInnerLayout(builder.innerLayoutCollapsedMargins);
-        Animation c = animatePicture(builder.pictureExpandedSize,
-                                     builder.hidePictureWhenCollapsed ? 0 : builder.pictureCollapsedSize);
+        if (animating)
+            return;
+        animating = true;
+        Animation a = utils.animateToolbar(toolbar.getHeight(), builder.toolbarCollapsedHeight, builder.toolbarColor,
+                                           builder.statusBarColor);
+        Animation b = utils.animateInnerLayout(builder.innerLayoutCollapsedMargins);
+        Animation c = utils.animatePicture(builder.pictureExpandedSize,
+                                           builder.hidePictureWhenCollapsed ? 0 : builder.pictureCollapsedSize);
 
         a.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -153,6 +172,7 @@ public class MorphyToolbar extends RelativeLayout {
 
             @Override
             public void onAnimationEnd(Animation animation) {
+                animating = false;
                 collapsed = true;
                 if (listener != null)
                     listener.onMorphyToolbarCollapsed();
@@ -179,9 +199,19 @@ public class MorphyToolbar extends RelativeLayout {
         lblTitle.setText(title);
     }
 
+    public void setTitle(@StringRes int res) {
+        builder.title = activity.getText(res);
+        lblTitle.setText(builder.title);
+    }
+
     public void setSubtitle(CharSequence subtitle) {
         builder.subtitle = subtitle;
         lblSubtitle.setText(subtitle);
+    }
+
+    public void setSubtitle(@StringRes int res) {
+        builder.subtitle = activity.getText(res);
+        lblSubtitle.setText(builder.subtitle);
     }
 
     public void setPicture(Bitmap bitmap) {
@@ -242,6 +272,22 @@ public class MorphyToolbar extends RelativeLayout {
 
     TextView getLblSubtitle() {
         return lblSubtitle;
+    }
+
+    public AppCompatActivity getActivity() {
+        return activity;
+    }
+
+    public Toolbar getToolbar() {
+        return toolbar;
+    }
+
+    public boolean isAnimating() {
+        return animating;
+    }
+
+    public static MorphyToolbar findInActivity(@NonNull AppCompatActivity activity) {
+        return (MorphyToolbar) activity.findViewById(R.id.mt_morphy_toolbar);
     }
 
     public static MorphyToolbarBuilder builder(@NonNull AppCompatActivity activity, @NonNull Toolbar toolbar) {

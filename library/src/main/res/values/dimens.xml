@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="mt_toolbar_height">56dp</dimen>
+    <dimen name="mt_toolbar_padding_start">0dp</dimen>
+    <dimen name="mt_toolbar_padding_end">16dp</dimen>
+
     <dimen name="mt_toolbar_picture_size_collapsed">42dp</dimen>
     <dimen name="mt_toolbar_picture_size_expanded">62dp</dimen>
 
-    <dimen name="mt_toolbar_content_margin_start_collapsed">52dp</dimen>
+    <dimen name="mt_toolbar_picture_margin_start">0dp</dimen>
+    <dimen name="mt_toolbar_title_margin_start">12dp</dimen>
+
+    <dimen name="mt_toolbar_content_margin_start_collapsed">56dp</dimen>
     <dimen name="mt_toolbar_content_margin_top_collapsed">0dp</dimen>
     <dimen name="mt_toolbar_content_margin_end_collapsed">0dp</dimen>
     <dimen name="mt_toolbar_content_margin_bottom_collapsed">0dp</dimen>
 
-    <dimen name="mt_toolbar_content_margin_start_expanded">0dp</dimen>
+    <dimen name="mt_toolbar_content_margin_start_expanded">16dp</dimen>
     <dimen name="mt_toolbar_content_margin_top_expanded">0dp</dimen>
     <dimen name="mt_toolbar_content_margin_end_expanded">0dp</dimen>
     <dimen name="mt_toolbar_content_margin_bottom_expanded">16dp</dimen>

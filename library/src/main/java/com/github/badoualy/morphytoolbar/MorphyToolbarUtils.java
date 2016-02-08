@@ -2,6 +2,7 @@ package com.github.badoualy.morphytoolbar;
 
 import android.os.Build;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -12,22 +13,19 @@ import android.widget.RelativeLayout;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+/** Delegate class handling all the animation part */
 final class MorphyToolbarUtils {
 
-    private static MorphyToolbar morphyToolbar;
-    private static MorphyToolbarBuilder builder;
-    private static Toolbar toolbar;
+    private MorphyToolbar morphyToolbar;
+    private MorphyToolbarBuilder builder;
+    private Toolbar toolbar;
 
-    private static int toolbarCurrentColor;
-    private static int statusBarCurrentColor;
+    private int toolbarCurrentColor;
+    private int statusBarCurrentColor;
 
-    private MorphyToolbarUtils() {
-
-    }
-
-    static void init(MorphyToolbar morphyToolbar) {
-        MorphyToolbarUtils.morphyToolbar = morphyToolbar;
-        MorphyToolbarUtils.builder = morphyToolbar.getBuilder();
+    MorphyToolbarUtils(MorphyToolbar morphyToolbar) {
+        this.morphyToolbar = morphyToolbar;
+        this.builder = morphyToolbar.getBuilder();
         toolbar = builder.toolbar;
         toolbarCurrentColor = builder.toolbarColor;
         statusBarCurrentColor = builder.statusBarColor;
@@ -42,7 +40,7 @@ final class MorphyToolbarUtils {
      * @param statusBarColor status bar color at animation end (if possible)
      * @return Animation to run
      */
-    public static Animation animateToolbar(final int startHeight, final int endHeight, final int toolbarColor, final int statusBarColor) {
+    public Animation animateToolbar(final int startHeight, final int endHeight, final int toolbarColor, final int statusBarColor) {
         final int deltaHeight = endHeight - startHeight;
         final int toolbarStartColor = toolbarCurrentColor;
         final int statusBarStartColor = statusBarCurrentColor;
@@ -82,7 +80,7 @@ final class MorphyToolbarUtils {
      * @param endMargins array of margins at animation end
      * @return Animation to run
      */
-    public static Animation animateInnerLayout(int[] endMargins) {
+    public Animation animateInnerLayout(int[] endMargins) {
         final LinearLayout innerLayout = morphyToolbar.getInnerLayout();
         final RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) innerLayout.getLayoutParams();
         final int[] startMargins = {layoutParams.leftMargin, layoutParams.topMargin, layoutParams.rightMargin, layoutParams.bottomMargin};
@@ -115,7 +113,7 @@ final class MorphyToolbarUtils {
      * @param endSize   size at animation end
      * @return Animation to run
      */
-    public static Animation animatePicture(final int startSize, final int endSize) {
+    public Animation animatePicture(final int startSize, final int endSize) {
         final CircleImageView imgPicture = morphyToolbar.getImgPicture();
         final ViewGroup.LayoutParams layoutParams = imgPicture.getLayoutParams();
         final int deltaSize = endSize - startSize;
@@ -143,8 +141,10 @@ final class MorphyToolbarUtils {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                if (endSize == 0)
+                if (endSize == 0) {
+                    Log.e("Yann", "end size is 0");
                     imgPicture.setVisibility(View.GONE);
+                }
             }
 
             @Override

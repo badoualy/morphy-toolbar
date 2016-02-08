@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.github.badoualy.morphytoolbar.MorphyToolbar;
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         morphyToolbar = MorphyToolbar.builder(this, toolbar)
                                      .withToolbarAsSupportActionBar()
-                                     .withTitle("Minions [not so] serious talk")
+                                     .withTitle("Work [not so] serious talk")
                                      .withSubtitle("160 participants")
                                      .withPicture(R.drawable.img_profile)
                                      .withHidePictureWhenCollapsed(false)
@@ -108,5 +109,15 @@ public class MainActivity extends AppCompatActivity {
             morphyToolbar.collapse();
         } else
             super.onBackPressed();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

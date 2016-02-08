@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 
-def compileLocal = false
+def compileLocal = true
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion as Integer
@@ -10,8 +10,8 @@ android {
         applicationId "com.github.badoualy.morphytoolbar.sample"
         minSdkVersion 10
         targetSdkVersion 23
-        versionCode 100
-        versionName "1.0.0"
+        versionCode 103
+        versionName "1.0.3"
     }
 
     buildTypes {

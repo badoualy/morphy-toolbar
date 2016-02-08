@@ -159,5 +159,25 @@ public abstract class MorphyToolbarBuilder {
         return this;
     }
 
+    public MorphyToolbarBuilder withContentMarginStart(int marginInPx) {
+        innerLayoutCollapsedMargins[0] = marginInPx;
+        return this;
+    }
+
+    public MorphyToolbarBuilder withContentMarginStartRes(@DimenRes int res) {
+        innerLayoutCollapsedMargins[0] = activity.getResources().getDimensionPixelSize(res);
+        return this;
+    }
+
+    public MorphyToolbarBuilder withContentExpandedMarginStart(int marginInPx) {
+        innerLayoutExpandedMargins[0] = marginInPx;
+        return this;
+    }
+
+    public MorphyToolbarBuilder withContentExpandedMarginStartRes(@DimenRes int res) {
+        innerLayoutExpandedMargins[0] = activity.getResources().getDimensionPixelSize(res);
+        return this;
+    }
+
     public abstract MorphyToolbar build();
 }

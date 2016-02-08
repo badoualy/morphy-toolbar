@@ -1,60 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
-       xmlns:app="http://schemas.android.com/apk/res-auto"
-       xmlns:tools="http://schemas.android.com/tools">
+<LinearLayout
+    android:id="@+id/mt_layout_toolbar"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/mt_toolbar_content_margin_bottom_collapsed"
+    android:layout_marginEnd="@dimen/mt_toolbar_content_margin_end_collapsed"
+    android:layout_marginLeft="@dimen/mt_toolbar_content_margin_start_collapsed"
+    android:layout_marginRight="@dimen/mt_toolbar_content_margin_end_collapsed"
+    android:layout_marginStart="@dimen/mt_toolbar_content_margin_start_collapsed"
+    android:layout_marginTop="@dimen/mt_toolbar_content_margin_top_collapsed"
+    android:gravity="center_vertical"
+    android:minHeight="@dimen/mt_toolbar_height"
+    android:orientation="horizontal"
+    android:paddingEnd="@dimen/mt_toolbar_padding_end"
+    android:paddingLeft="@dimen/mt_toolbar_padding_start"
+    android:paddingRight="@dimen/mt_toolbar_padding_end"
+    android:paddingStart="@dimen/mt_toolbar_padding_start">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/mt_img_picture"
+        android:layout_width="@dimen/mt_toolbar_picture_size_collapsed"
+        android:layout_height="@dimen/mt_toolbar_picture_size_collapsed"
+        android:layout_marginLeft="@dimen/mt_toolbar_picture_margin_start"
+        android:layout_marginStart="@dimen/mt_toolbar_picture_margin_start"
+        app:border_color="#00000000"
+        app:border_width="0dp"/>
 
     <LinearLayout
-        android:id="@+id/mt_layout_toolbar"
+        android:id="@+id/mt_layout_title"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/mt_toolbar_content_margin_bottom_collapsed"
-        android:layout_marginEnd="@dimen/mt_toolbar_content_margin_end_collapsed"
-        android:layout_marginLeft="@dimen/mt_toolbar_content_margin_start_collapsed"
-        android:layout_marginRight="@dimen/mt_toolbar_content_margin_end_collapsed"
-        android:layout_marginStart="@dimen/mt_toolbar_content_margin_start_collapsed"
-        android:layout_marginTop="@dimen/mt_toolbar_content_margin_top_collapsed"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/mt_toolbar_title_margin_start"
+        android:layout_marginStart="@dimen/mt_toolbar_title_margin_start"
         android:gravity="center_vertical"
-        android:minHeight="@dimen/mt_toolbar_height"
-        android:orientation="horizontal"
-        android:paddingEnd="16dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="16dp"
-        android:paddingStart="8dp">
+        android:orientation="vertical">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/img_picture"
-            android:layout_width="@dimen/mt_toolbar_picture_size_collapsed"
-            android:layout_height="@dimen/mt_toolbar_picture_size_collapsed"
-            app:border_color="#00000000"
-            app:border_width="0dp"/>
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/mt_lbl_title"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="12dp"
-            android:layout_marginStart="12dp"
-            android:gravity="center_vertical"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+            android:textColor="@color/mt_title_color"
+            tools:text="Occult kenkyukai"/>
 
-            <TextView
-                android:id="@+id/lbl_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
-                android:textColor="@color/mt_title_color"
-                tools:text="Occult kenkyukai"/>
-
-            <TextView
-                android:id="@+id/lbl_subtitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="-3dp"
-                android:singleLine="true"
-                android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle"
-                android:textColor="@color/mt_subtitle_color"
-                android:textSize="14sp"
-                tools:text="10 participants"/>
-        </LinearLayout>
+        <TextView
+            android:id="@+id/mt_lbl_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-3dp"
+            android:singleLine="true"
+            android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle"
+            android:textColor="@color/mt_subtitle_color"
+            android:textSize="14sp"
+            tools:text="10 participants"/>
     </LinearLayout>
-</merge>
+</LinearLayout>
