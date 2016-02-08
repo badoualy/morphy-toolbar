@@ -40,7 +40,7 @@ repositories {
 
 Then, add the library dependency:
 ```gradle
-compile 'com.github.badoualy:morphy-toolbar:1.0.1'
+compile 'com.github.badoualy:morphy-toolbar:1.0.3'
 ```
 
 Now go do some awesome stuff!
