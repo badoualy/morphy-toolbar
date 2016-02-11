@@ -1,4 +1,5 @@
 [![Release](https://jitpack.io/v/badoualy/morphy-toolbar.svg)](https://jitpack.io/#badoualy/morphy-toolbar)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-morphy--toolbar-green.svg?style=true)](https://android-arsenal.com/details/1/3133)
 
 # ![](https://github.com/badoualy/morphy-toolbar/blob/master/sample/src/main/res/mipmap-mdpi/ic_launcher.png) Morphy Toolbar
 
