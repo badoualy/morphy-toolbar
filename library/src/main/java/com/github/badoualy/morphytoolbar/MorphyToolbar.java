@@ -77,8 +77,12 @@ public class MorphyToolbar extends RelativeLayout {
     private void init() {
         final LayoutParams layoutParams = (LayoutParams) innerLayout.getLayoutParams();
         layoutParams.leftMargin = builder.innerLayoutCollapsedMargins[0];
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
+        layoutParams.rightMargin = builder.innerLayoutCollapsedMargins[2];
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             layoutParams.setMarginStart(builder.innerLayoutCollapsedMargins[0]);
+            layoutParams.setMarginEnd(builder.innerLayoutCollapsedMargins[2]);
+        }
+
 
         // The title will be displayed in our own TextView :)
         toolbar.setTitle(null);
