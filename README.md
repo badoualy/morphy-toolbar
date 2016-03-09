@@ -1,4 +1,5 @@
 [![Release](https://jitpack.io/v/badoualy/morphy-toolbar.svg)](https://jitpack.io/#badoualy/morphy-toolbar)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-morphy--toolbar-green.svg?style=true)](https://android-arsenal.com/details/1/3133)
 
 # ![](https://github.com/badoualy/morphy-toolbar/blob/master/sample/src/main/res/mipmap-mdpi/ic_launcher.png) Morphy Toolbar
 
@@ -40,23 +41,23 @@ repositories {
 
 Then, add the library dependency:
 ```gradle
-compile 'com.github.badoualy:morphy-toolbar:1.0.1'
+compile 'com.github.badoualy:morphy-toolbar:1.0.3'
 ```
 
 Now go do some awesome stuff!
 
 Usage
 ----------------
-```
+``` java
 // Attach to the given activity/toolbar
 MorphyToolbar morphyToolbar = MorphyToolbar.builder(this, toolbar)
-											.withToolbarAsSupportActionBar()
-   	                                		.withTitle("Minions [not so] serious talk")
-                                     		.withSubtitle("160 participants")
-                                     		.withPicture(R.drawable.img_profile)
-                                     		.withHidePictureWhenCollapsed(false)
-                                     		.build();
-                                            
+        .withToolbarAsSupportActionBar()
+        .withTitle("Minions [not so] serious talk")
+        .withSubtitle("160 participants")
+        .withPicture(R.drawable.img_profile)
+        .withHidePictureWhenCollapsed(false)
+        .build();
+        
 morphyToolbar.expand();
 morphyToolbar.collapse();
 ```
