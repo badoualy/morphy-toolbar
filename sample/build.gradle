@@ -10,8 +10,8 @@ android {
         applicationId "com.github.badoualy.morphytoolbar.sample"
         minSdkVersion 10
         targetSdkVersion 23
-        versionCode 104
-        versionName "1.0.4"
+        versionCode 105
+        versionName "1.0.5"
     }
 
     buildTypes {
@@ -29,5 +29,5 @@ dependencies {
     if (compileLocal)
         compile project(':library')
     else
-        compile 'com.github.badoualy:morphy-toolbar:1.0.4'
+        compile 'com.github.badoualy:morphy-toolbar:1.0.5'
 }

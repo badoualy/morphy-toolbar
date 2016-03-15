@@ -211,6 +211,7 @@ public class MorphyToolbar extends RelativeLayout {
     public void setSubtitle(CharSequence subtitle) {
         builder.subtitle = subtitle;
         lblSubtitle.setText(subtitle);
+        lblSubtitle.setVisibility(subtitle == null || subtitle.length() == 0 ? GONE : VISIBLE);
     }
 
     public void setSubtitle(@StringRes int res) {
