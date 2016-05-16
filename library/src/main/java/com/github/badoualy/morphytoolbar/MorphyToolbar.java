@@ -291,6 +291,22 @@ public class MorphyToolbar extends RelativeLayout {
         return animating;
     }
 
+    /**
+     * Changes text color of the title
+     * @param textColor - int resource of color
+     */
+    public void setTitleTextColor(final int textColor) {
+        lblTitle.setTextColor(textColor);
+    }
+
+    /**
+     * Changes the color of the subtitle
+     * @param textColor - int textcolor to change to
+     */
+    public void setSubtitleTextColor(final int textColor) {
+        lblSubtitle.setTextColor(textColor);
+    }
+
     public static MorphyToolbar findInActivity(@NonNull AppCompatActivity activity) {
         return (MorphyToolbar) activity.findViewById(R.id.mt_morphy_toolbar);
     }
