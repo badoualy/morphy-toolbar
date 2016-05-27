@@ -26,8 +26,8 @@
         android:layout_height="@dimen/mt_toolbar_picture_size_collapsed"
         android:layout_marginLeft="@dimen/mt_toolbar_picture_margin_start"
         android:layout_marginStart="@dimen/mt_toolbar_picture_margin_start"
-        app:border_color="#00000000"
-        app:border_width="0dp"/>
+        app:civ_border_color="#00000000"
+        app:civ_border_width="0dp"/>
 
     <LinearLayout
         android:id="@+id/mt_layout_title"

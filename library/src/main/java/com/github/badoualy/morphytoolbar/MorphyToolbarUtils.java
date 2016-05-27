@@ -2,14 +2,12 @@ package com.github.badoualy.morphytoolbar;
 
 import android.os.Build;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Transformation;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
+import android.widget.FrameLayout;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -81,8 +79,8 @@ final class MorphyToolbarUtils {
      * @return Animation to run
      */
     public Animation animateInnerLayout(int[] endMargins) {
-        final LinearLayout innerLayout = morphyToolbar.getInnerLayout();
-        final RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) innerLayout.getLayoutParams();
+        final View innerLayout = morphyToolbar.getInnerLayout();
+        final FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) innerLayout.getLayoutParams();
         final int[] startMargins = {layoutParams.leftMargin, layoutParams.topMargin, layoutParams.rightMargin, layoutParams.bottomMargin};
         final int[] deltaMargins = {endMargins[0] - startMargins[0], endMargins[1] - startMargins[1],
                                     endMargins[2] - startMargins[2], endMargins[3] - startMargins[3]};
@@ -141,10 +139,8 @@ final class MorphyToolbarUtils {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                if (endSize == 0) {
-                    Log.e("Yann", "end size is 0");
+                if (endSize == 0)
                     imgPicture.setVisibility(View.GONE);
-                }
             }
 
             @Override

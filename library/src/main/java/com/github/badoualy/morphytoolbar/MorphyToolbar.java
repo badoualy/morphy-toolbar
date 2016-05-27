@@ -2,31 +2,34 @@ package com.github.badoualy.morphytoolbar;
 
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.annotation.ColorInt;
+import android.support.annotation.ColorRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 @SuppressLint("ViewConstructor")
-public class MorphyToolbar extends RelativeLayout {
+public class MorphyToolbar extends FrameLayout {
 
     private Builder builder;
     private AppCompatActivity activity;
     private Toolbar toolbar;
     private MorphyToolbarUtils utils;
 
-    private LinearLayout innerLayout;
-    private LinearLayout titleLayout;
+    private ViewGroup innerLayout, titleLayout;
     private TextView lblTitle;
     private TextView lblSubtitle;
     private CircleImageView imgPicture;
@@ -50,7 +53,7 @@ public class MorphyToolbar extends RelativeLayout {
 
     private void inflate() {
         final View view = inflate(getContext(), R.layout.mt_morphy_toolbar, this);
-        innerLayout = (LinearLayout) view.findViewById(R.id.mt_layout_toolbar);
+        innerLayout = (ViewGroup) view.findViewById(R.id.mt_layout_toolbar);
         imgPicture = (CircleImageView) innerLayout.findViewById(R.id.mt_img_picture);
         titleLayout = (LinearLayout) innerLayout.findViewById(R.id.mt_layout_title);
 
@@ -62,15 +65,25 @@ public class MorphyToolbar extends RelativeLayout {
 
     /** Replace the toolbar in the activity view by the MorphyToolbar, wrapping the toolbar */
     private void replaceToolbar() {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            // Hack, will have to do better
+            final float elevation = toolbar.getElevation();
+            toolbar.setElevation(0f);
+            setElevation(elevation);
+            setBackgroundColor(Color.WHITE);
+        }
+
         final ViewGroup toolbarParent = (ViewGroup) toolbar.getParent();
         int toolbarIndex = toolbarParent.indexOfChild(toolbar);
         toolbarParent.removeViewAt(toolbarIndex);
         addView(toolbar, 0);
+
         toolbarParent.addView(this, toolbarIndex);
+        getLayoutParams().width = LayoutParams.MATCH_PARENT;
 
         // Align content at toolbar's bottom
         final LayoutParams layoutParams = (LayoutParams) innerLayout.getLayoutParams();
-        layoutParams.addRule(RelativeLayout.ALIGN_BOTTOM, toolbar.getId());
+        layoutParams.gravity = Gravity.BOTTOM;
         innerLayout.requestLayout();
     }
 
@@ -82,7 +95,6 @@ public class MorphyToolbar extends RelativeLayout {
             layoutParams.setMarginStart(builder.innerLayoutCollapsedMargins[0]);
             layoutParams.setMarginEnd(builder.innerLayoutCollapsedMargins[2]);
         }
-
 
         // The title will be displayed in our own TextView :)
         toolbar.setTitle(null);
@@ -263,7 +275,7 @@ public class MorphyToolbar extends RelativeLayout {
         return builder;
     }
 
-    LinearLayout getInnerLayout() {
+    ViewGroup getInnerLayout() {
         return innerLayout;
     }
 
@@ -291,20 +303,20 @@ public class MorphyToolbar extends RelativeLayout {
         return animating;
     }
 
-    /**
-     * Changes text color of the title
-     * @param textColor - int resource of color
-     */
-    public void setTitleTextColor(final int textColor) {
-        lblTitle.setTextColor(textColor);
+    public void setTitleTextColor(@ColorInt int color) {
+        lblTitle.setTextColor(color);
     }
 
-    /**
-     * Changes the color of the subtitle
-     * @param textColor - int textcolor to change to
-     */
-    public void setSubtitleTextColor(final int textColor) {
-        lblSubtitle.setTextColor(textColor);
+    public void setSubtitleTextColor(@ColorInt int color) {
+        lblSubtitle.setTextColor(color);
+    }
+
+    public void setTitleTextColorRes(@ColorRes int color) {
+        lblTitle.setTextColor(getContext().getResources().getColor(color));
+    }
+
+    public void setSubtitleTextColorRes(@ColorRes int color) {
+        lblSubtitle.setTextColor(getContext().getResources().getColor(color));
     }
 
     public static MorphyToolbar findInActivity(@NonNull AppCompatActivity activity) {
